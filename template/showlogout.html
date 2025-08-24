@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logout Confirmation</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2b5876, #4e4376);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      max-width: 400px;
+      text-align: center;
+      backdrop-filter: blur(15px);
+    }
+    h1 {
+      color: #ff007a;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+    button, .cancel-link {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: none;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin: 0 10px;
+    }
+    button {
+      background: linear-gradient(135deg, #ff007a, #ff8c00);
+      color: white;
+      border: none;
+    }
+    button:hover {
+      box-shadow: 0 0 15px rgba(255, 0, 122, 0.7);
+      transform: scale(1.05);
+    }
+    .cancel-link {
+      background: #ddd;
+      color: #333;
+    }
+    .cancel-link:hover {
+      box-shadow: 0 0 15px rgba(150, 150, 150, 0.7);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Are you sure you want to log out?</h1>
+    <p>You will be logged out of your account. Click "Log Out" to continue or "Cancel" to stay logged in.</p>
+
+    <form method="post" action="{% url 'logout' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <button type="submit">Log Out</button>
+      <a href="{% url 'home' %}" class="cancel-link">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>

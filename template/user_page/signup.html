@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up - For True iPhone Lovers</title>
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+  <div class="container" role="main">
+    <div class="left-side" aria-label="Iphone lover banner">
+      <div class="iphone-lover-header">
+        <span class="icon">🍎</span>
+        <span>FOR TRUE IPHONE LOVERS</span>
+        <span class="icon">🍎</span>
+      </div>
+      <div class="iphone-animation" aria-hidden="true" title="Floating iPhone image"></div>
+    </div>
+
+    <div class="right-side">
+      <h2>Sign Up</h2>
+      <form method="POST" novalidate>
+  {% csrf_token %}
+  
+  <div class="form-group">
+    <label for="id_username" data-icon="👤">Username</label>
+    <input
+      type="text"
+      id="id_username"
+      name="username"
+      placeholder="Enter username"
+      required
+      minlength="3"
+      autocomplete="username"
+      autofocus
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="id_email" data-icon="✉️">Email Address</label>
+    <input
+      type="email"
+      id="id_email"
+      name="email"
+      placeholder="example@email.com"
+      required
+      autocomplete="email"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="id_password1" data-icon="🔒">Password</label>
+    <input
+      type="password"
+      id="id_password1"
+      name="password1"
+      placeholder="Create a password"
+      required
+      minlength="6"
+      autocomplete="new-password"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="id_password2" data-icon="🔒">Confirm Password</label>
+    <input
+      type="password"
+      id="id_password2"
+      name="password2"
+      placeholder="Confirm your password"
+      required
+      minlength="6"
+      autocomplete="new-password"
+    />
+  </div>
+
+  <button type="submit" class="btn-submit">Sign Up</button>
+</form>
+ <div class="login-container">
+
+  <form method="post" action="/login/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Add your form fields here -->
+
+    <button type="submit" class="btn-login-button">Login</button>
+  </form>
+
+  <!-- Home link styled as button -->
+  <a href="/" class="btn-login-button btn-home-button" role="button" aria-label="Go to Home Page">Home</a>
+
+</div>
+
+</body>
+</html>

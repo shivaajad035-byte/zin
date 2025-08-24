@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logout - Are You Sure?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2b5876, #4e4376);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      width: 100%;
+      max-width: 450px;
+      color: #fff;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff007a;
+      margin-bottom: 1rem;
+      animation: fadeInText 1.5s ease-out;
+    }
+
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message {
+      font-size: 1.1rem;
+      color: #eee;
+      margin-bottom: 2rem;
+    }
+
+    .btn-logout {
+      background: linear-gradient(135deg, #ff007a, #ff8c00);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 0, 122, 0.6);
+    }
+
+    .btn-cancel {
+      background: #ddd;
+      color: #333;
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-cancel:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(200, 200, 200, 0.6);
+    }
+
+    footer {
+      font-size: 0.75rem;
+      color: #ccc;
+      margin-top: 2rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Are you sure you want to log out?</h1>
+    <p class="message">You are about to log out of your account. If you're ready, click the "Log Out" button below. If not, you can cancel the process.</p>
+<!-- Log Out Button -->
+<form method="post" action="{% url 'logout' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <button type="submit" class="btn-logout">Log Out</button>
+</form>
+    <!-- Cancel Button -->
+    <a href="dashboard.html" class="btn-cancel">Cancel</a>
+
+    <footer>
+      All rights reserved © 2025 Your Company.
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UPI Payment Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .payment-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+    .payment-button {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      width: 100%;
+      border-radius: 4px;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .payment-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h2>Pay ₹100 for iPhone 16</h2>
+    <button id="pay-button" class="payment-button">Pay Now</button>
+  </div>
+
+  <script>
+    // Razorpay Payment Request Data
+    const options = {
+      "key": "your-razorpay-api-key", // Replace with your Razorpay API Key
+      "amount": "10000", // Amount in paise (₹100.00)
+      "currency": "INR",
+      "name": "SuperTech Deals",
+      "description": "iPhone 16 Purchase",
+      "image": "https://example.com/logo.png", // Optional image (e.g., your logo)
+      "handler": function (response) {
+        alert('Payment Successful. Payment ID: ' + response.razorpay_payment_id);
+        // You can send this payment ID to your server to validate the payment
+      },
+      "prefill": {
+        "name": "Customer Name",
+        "email": "customer@example.com",
+        "contact": "+919876543210"
+      },
+      "theme": {
+        "color": "#F37254"
+      },
+      "method": ["upi", "card", "netbanking", "wallets"]  // Enable all payment options
+    };
+
+    // Initialize Razorpay Checkout
+    const rzp = new Razorpay(options);
+
+    // Handle the button click
+    document.getElementById("pay-button").onclick = function (e) {
+      rzp.open();
+      e.preventDefault();
+    };
+  </script>
+</body>
+</html>

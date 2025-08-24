@@ -1,0 +1,861 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #2b5876, #4e4376);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  max-width: 900px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: fadeInScale 0.7s ease forwards;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.left-side {
+  flex: 1;
+  background: linear-gradient(135deg, #ff007a, #ff8c00);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.iphone-lover-header {
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-shadow: 0 0 12px #fff, 0 0 25px #fff;
+  animation: pulseGlow 2.5s infinite alternate ease-in-out;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.iphone-lover-header .icon {
+  font-size: 3.8rem;
+  animation: bounceIcon 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 12px #fff, 0 0 25px #fff;
+    color: #fff;
+  }
+  100% {
+    text-shadow: 0 0 30px #ffcf4a, 0 0 50px #ffcf4a;
+    color: #ffcf4a;
+  }
+}
+
+@keyframes bounceIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.iphone-animation {
+  width: 140px;
+  height: 280px;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/1/1b/IPhone_14_Pro_Vector.svg")
+    no-repeat center/contain;
+  filter: drop-shadow(0 0 8px #fff);
+  animation: floatUpDown 3s ease-in-out infinite;
+  margin: 0 auto;
+  border-radius: 40px;
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.right-side {
+  flex: 1;
+  padding: 3rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #00ffd9;
+  font-size: 2.2rem;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 8px #00ffd9;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateX(40px);
+  animation: fadeSlideLeft 0.6s ease forwards;
+}
+
+@keyframes fadeSlideLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+label {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  user-select: none;
+  letter-spacing: 0.6px;
+  color: #00ffd9;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label::before {
+  content: attr(data-icon);
+  display: inline-block;
+  animation: bounceIcon 2s infinite ease-in-out;
+  font-size: 1.3rem;
+  color: #ff8c00;
+  user-select: none;
+}
+
+input,
+select {
+  padding: 0.75rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: 1.8px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  max-width: 400px;
+  width: 100%;
+  cursor: text;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+input:hover,
+select:hover {
+  border-color: #ff8c00;
+  box-shadow: 0 0 12px 3px #ff8c00aa;
+  transform: scale(1.04);
+}
+
+input:focus,
+select:focus {
+  border-color: #ff7000;
+  box-shadow: 0 0 10px 4px #ff8c00cc, inset 0 2px 8px rgba(255, 255, 255, 0.2);
+  outline: none;
+  transform: scale(1.07);
+  animation: pulseGlow 2s infinite alternate ease-in-out;
+}
+
+input:focus:invalid,
+select:focus:invalid {
+  animation: shake 0.35s ease-in-out;
+  border: 2px solid #ff3b3f;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+.btn-submit {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  background: linear-gradient(135deg, #ff007a, #ff8c00);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 25px #ff007a, 0 0 50px #ff8c00;
+  transition: box-shadow 0.4s ease;
+}
+
+.btn-submit:hover {
+  box-shadow: 0 0 50px #ff007a, 0 0 100px #ff8c00;
+  transform: scale(1.04);
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #ccc;
+  user-select: none;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+  max-width: 400px;
+}
+
+.terms input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.terms a {
+  color: #00ffd9;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.terms a:hover {
+  color: #ff8c00;
+}
+
+/* Button Styles */
+.btn-login-button,
+.btn-home-button {
+  display: inline-block;
+  padding: 12px 28px;
+  margin: 10px 5px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+}
+
+.btn-home-button {
+  background-color: #6c757d; /* Secondary grey */
+}
+
+.btn-home-button:hover,
+.btn-home-button:focus {
+  background-color: #5a6268;
+  box-shadow: 0 5px 12px rgba(90, 98, 104, 0.5);
+}
+
+.btn-login-button:hover,
+.btn-login-button:focus {
+  background-color: #0056b3;
+  box-shadow: 0 5px 12px rgba(0, 86, 179, 0.5);
+  outline: none;
+}
+
+/* Media Queries */
+@media (max-width: 850px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-side, .right-side {
+    width: 100%;
+  }
+  .btn-login-button,
+  .btn-home-button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .btn-login-button,
+  .btn-home-button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-login-button,
+  .btn-home-button {
+    padding: 10px 0;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .btn-login-button,
+  .btn-home-button {
+    padding: 8px 0;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .btn-login-button,
+  .btn-home-button {
+    padding: 7px 0;
+    font-size: 11px;
+  }
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #2b5876, #4e4376);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  max-width: 900px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: fadeInScale 0.7s ease forwards;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.left-side {
+  flex: 1;
+  background: linear-gradient(135deg, #ff007a, #ff8c00);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.iphone-lover-header {
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-shadow: 0 0 12px #fff, 0 0 25px #fff;
+  animation: pulseGlow 2.5s infinite alternate ease-in-out;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.iphone-lover-header .icon {
+  font-size: 3.8rem;
+  animation: bounceIcon 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 12px #fff, 0 0 25px #fff;
+    color: #fff;
+  }
+  100% {
+    text-shadow: 0 0 30px #ffcf4a, 0 0 50px #ffcf4a;
+    color: #ffcf4a;
+  }
+}
+
+@keyframes bounceIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.iphone-animation {
+  width: 140px;
+  height: 280px;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/1/1b/IPhone_14_Pro_Vector.svg")
+    no-repeat center/contain;
+  filter: drop-shadow(0 0 8px #fff);
+  animation: floatUpDown 3s ease-in-out infinite;
+  margin: 0 auto;
+  border-radius: 40px;
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.right-side {
+  flex: 1;
+  padding: 3rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #00ffd9;
+  font-size: 2.2rem;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 8px #00ffd9;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateX(40px);
+  animation: fadeSlideLeft 0.6s ease forwards;
+}
+
+@keyframes fadeSlideLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+label {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  user-select: none;
+  letter-spacing: 0.6px;
+  color: #00ffd9;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label::before {
+  content: attr(data-icon);
+  display: inline-block;
+  animation: bounceIcon 2s infinite ease-in-out;
+  font-size: 1.3rem;
+  color: #ff8c00;
+  user-select: none;
+}
+
+input,
+select {
+  padding: 0.75rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: 1.8px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  max-width: 400px;
+  width: 100%;
+  cursor: text;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+input:hover,
+select:hover {
+  border-color: #ff8c00;
+  box-shadow: 0 0 12px 3px #ff8c00aa;
+  transform: scale(1.04);
+}
+
+input:focus,
+select:focus {
+  border-color: #ff7000;
+  box-shadow: 0 0 10px 4px #ff8c00cc, inset 0 2px 8px rgba(255, 255, 255, 0.2);
+  outline: none;
+  transform: scale(1.07);
+  animation: pulseGlow 2s infinite alternate ease-in-out;
+}
+
+input:focus:invalid,
+select:focus:invalid {
+  animation: shake 0.35s ease-in-out;
+  border: 2px solid #ff3b3f;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+.btn-submit {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  background: linear-gradient(135deg, #ff007a, #ff8c00);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 25px #ff007a, 0 0 50px #ff8c00;
+  transition: box-shadow 0.4s ease;
+}
+
+.btn-submit:hover {
+  box-shadow: 0 0 50px #ff007a, 0 0 100px #ff8c00;
+  transform: scale(1.04);
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #ccc;
+  user-select: none;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+  max-width: 400px;
+}
+
+.terms input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.terms a {
+  color: #00ffd9;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.terms a:hover {
+  color: #ff8c00;
+}
+
+/* Button Styles */
+.btn-login-button,
+.btn-home-button {
+  display: inline-block;
+  padding: 12px 28px;
+  margin: 10px 5px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+}
+
+.btn-home-button {
+  background-color: #6c757d; /* Secondary grey */
+}
+
+.btn-home-button:hover,
+.btn-home-button:focus {
+  background-color: #5a6268;
+  box-shadow: 0 5px 12px rgba(90, 98, 104, 0.5);
+}
+
+.btn-login-button:hover,
+.btn-login-button:focus {
+  background-color: #0056b3;
+  box-shadow: 0 5px 12px rgba(0, 86, 179, 0.5);
+  outline: none;
+}
+
+
+@media (max-width: 850px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-side {
+    padding: 2rem;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .right-side {
+    padding: 2rem;
+    border-left: none;
+    border-radius: 0 0 20px 20px;
+  }
+}
+
+/* Medium screen adjustments (Tablets, small desktops) */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-side {
+    padding: 2rem;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .right-side {
+    padding: 2rem;
+    border-left: none;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .btn-submit {
+    padding: 0.9rem 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  .btn-login-button {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+
+  .terms {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .terms input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Small screen (Mobile) */
+@media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-side {
+    padding: 1.5rem;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .right-side {
+    padding: 1.5rem;
+    border-left: none;
+    border-radius: 0 0 20px 20px;
+  }
+
+  /* Form input adjustments */
+  input,
+  select {
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .btn-submit {
+    padding: 0.9rem 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  .btn-login-button {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+
+  .terms {
+    font-size: 0.8rem;
+    max-width: 350px;
+    gap: 0.5rem;
+  }
+
+  .terms input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Extremely small screens (Portrait mobile) */
+@media (max-width: 360px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-side {
+    padding: 1.5rem;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .right-side {
+    padding: 1.5rem;
+    border-left: none;
+    border-radius: 0 0 20px 20px;
+  }
+
+  /* Adjust form inputs to fit smaller screen */
+  input,
+  select {
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+
+  .btn-submit {
+    padding: 0.8rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .btn-login-button {
+    padding: 10px 22px;
+    font-size: 14px;
+    width: 50%;
+  }
+
+  .terms {
+    font-size: 0.7rem;
+    max-width: 350px;
+    gap: 0.4rem;
+  }
+
+  .terms input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+  }
+  .iphone-animation {
+  width: 140px;
+  height: 0px;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/1/1b/IPhone_14_Pro_Vector.svg")
+    no-repeat center/contain;
+  filter: drop-shadow(0 0 8px #fff);
+  animation: floatUpDown 3s ease-in-out infinite;
+  margin: 0 auto;
+  border-radius: 40px;
+}
+body{
+    padding: 1rem;
+
+}
+.iphone-lover-header {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: 0 0 12px #fff, 0 0 25px #fff;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+}

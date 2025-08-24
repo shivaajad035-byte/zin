@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Account - Full Details</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2b5876, #4e4376);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      width: 100%;
+      max-width: 800px;
+      color: #fff;
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff007a;
+      margin-bottom: 1rem;
+      animation: fadeInText 1.5s ease-out;
+    }
+
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #ff007a;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .input-field,
+    .input-textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .input-field:focus,
+    .input-textarea:focus {
+      border-color: #ff007a;
+      outline: none;
+    }
+
+    .btn-edit,
+    .btn-save,
+    .btn-logout {
+      background: linear-gradient(135deg, #ff007a, #ff8c00);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-edit:hover,
+    .btn-save:hover,
+    .btn-logout:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 0, 122, 0.6);
+    }
+
+    footer {
+      font-size: 0.75rem;
+      color: #ccc;
+      margin-top: 2rem;
+    }
+
+    .profile-photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-photo img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ff007a;
+    }
+
+    .upload-photo {
+      display: block;
+      margin-top: 1rem;
+      background: #fff;
+      color: #333;
+      padding: 0.8rem 2.5rem;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .upload-photo:hover {
+      background: #ff007a;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="card">
+    <h1>User Account</h1>
+    
+    <!-- Profile Photo Section -->
+    <div class="profile-photo">
+      <img src="https://via.placeholder.com/150" alt="Profile Photo" id="profile-img">
+    </div>
+    <input type="file" id="photo-upload" class="upload-photo" accept="image/*" onchange="previewImage(event)" />
+
+    <!-- Personal Information Section -->
+    <form action="#" method="POST" enctype="multipart/form-data">
+      <div class="user-info">
+        <div class="section-title">Personal Information</div>
+        
+        <label for="username">Username</label>
+        <input type="text" id="username" class="input-field" name="username" value="{{ user.username }}" required />
+
+        
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" class="input-field" name="full-name" value="your name" required />
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" class="input-field" name="email" value="{{user.email}}" required />
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" class="input-field" name="dob" value="Your dob" required />
+
+        <label for="gender">Gender</label>
+        <select id="gender" class="input-field" name="gender" required>
+          <option value="male" selected>Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="member-since">Member Since</label>
+        <input type="text" id="member-since" class="input-field" name="member-since" value="January 2023" disabled />
+      </div>
+
+      <!-- Contact Information Section -->
+      <div class="contact-info">
+        <div class="section-title">Contact Information</div>
+        
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" class="input-field" name="phone" value="+1 234 567 890" required />
+
+        <label for="address">Address</label>
+        <textarea id="address" class="input-textarea" name="address" rows="4" required>123 Main Street, Cityville, CA 98765</textarea>
+
+        <label for="city">City</label>
+        <input type="text" id="city" class="input-field" name="city" value="Cityville" required />
+
+        <label for="state">State</label>
+        <input type="text" id="state" class="input-field" name="state" value="California" required />
+
+        <label for="zip">Zip Code</label>
+        <input type="text" id="zip" class="input-field" name="zip" value="98765" required />
+      </div>
+
+      <!-- Social Media & Preferences Section -->
+      <div class="social-preferences">
+        <div class="section-title">Social Media & Preferences</div>
+
+        <label for="facebook">Facebook</label>
+        <input type="url" id="facebook" class="input-field" name="facebook" value="https://facebook.com/johndoe" />
+
+        <label for="twitter">Twitter</label>
+        <input type="url" id="twitter" class="input-field" name="twitter" value="https://twitter.com/johndoe" />
+
+        <label for="instagram">Instagram</label>
+        <input type="url" id="instagram" class="input-field" name="instagram" value="https://instagram.com/johndoe" />
+
+        <label for="linkedin">LinkedIn</label>
+        <input type="url" id="linkedin" class="input-field" name="linkedin" value="https://linkedin.com/in/johndoe" />
+
+        <label for="website">Personal Website</label>
+        <input type="url" id="website" class="input-field" name="website" value="https://johndoe.com" />
+
+        <label for="newsletter">Subscribe to Newsletter</label>
+        <select id="newsletter" class="input-field" name="newsletter">
+          <option value="yes" selected>Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <!-- Account Settings Section -->
+      <div class="account-settings">
+        <div class="section-title">Account Settings</div>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" class="input-field" name="password" value="**********" required />
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" class="input-field" name="confirm-password" value="**********" required />
+
+        <label for="two-factor">Two-Factor Authentication</label>
+        <select id="two-factor" class="input-field" name="two-factor">
+          <option value="enabled" selected>Enabled</option>
+          <option value="disabled">Disabled</option>
+        </select>
+
+        <label for="security-question">Security Question</label>
+        <select id="security-question" class="input-field" name="security-question">
+          <option value="pet-name" selected>What is your pet's name?</option>
+          <option value="mother-maiden">What is your mother's maiden name?</option>
+          <option value="favorite-color">What is your favorite color?</option>
+        </select>
+        
+        <label for="security-answer">Answer to Security Question</label>
+        <input type="text" id="security-answer" class="input-field" name="security-answer" value="Fluffy" required />
+      </div>
+
+      <!-- Save and Edit Buttons -->
+      <a href="edit-profile.html" class="btn-edit">Edit Profile</a>
+      <button type="submit" class="btn-save">Save Changes</button>
+    </form>
+
+    <!-- Log Out Button -->
+    <a href="{% url 'logout' %}" class="btn-logout">Log Out</a>
+
+    <footer>
+      All rights reserved © 2025 Your Company.
+    </footer>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const image = document.getElementById('profile-img');
+      image.src = URL.createObjectURL(event.target.files[0]);
+    }
+  </script>
+</body>
+</html>

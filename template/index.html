@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iPhone 16 - Just $100 | Verified Deal</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+  
+</head>
+
+<body>
+
+  <div class="user-bar">
+    <div class="logo"><i class="fas fa-mobile-alt"></i> TechHub</div>
+
+    <div class="user-profile">
+      <img src="https://via.placeholder.com/38" alt="User" />
+      <span>{{ request.user.username }}</span>
+      <div class="user-dropdown">
+        <a href="{% url 'userdata' %}">Profile</a>
+        <form method="post" action="{% url 'logout' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <button type="submit">Log Out</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h1>iPhone 16 - Just $100</h1>
+    <span class="verified"><i class="fas fa-check-circle"></i> Verified Deal</span>
+
+    <div class="gallery">
+      <img src="https://via.placeholder.com/100" alt="Product 1" />
+      <img src="https://via.placeholder.com/100" alt="Product 2" />
+      <img src="https://via.placeholder.com/100" alt="Product 3" />
+    </div>
+
+    <div class="price">$100</div>
+    <div class="stock-warning">Only 5 left in stock!</div>
+    <p class="description">
+      Get your hands on the latest iPhone 16 for just $100! Limited-time verified offer. Don’t miss it!
+    </p>
+
+    <div class="btn-group">
+      <a href="{% url 'login' %}" class="btn-login">Login</a>
+      <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
+    </div>
+
+    <a href="#" class="btn-buy"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+
+    <div class="testimonials">
+      <p>"Amazing deal! I got mine in 2 days!"</p>
+      <div class="name">— Jane Doe</div>
+    </div>
+  </div>
+
+  <footer>© 2025 TechHub Deals | Secure Checkout</footer>
+
+
+</body>
+</html>
