@@ -1,72 +1,332 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>iPhone 16 - Just $100 | Verified Deal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPhone 16 - Verified Deal</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
+<style>
+:root {
+  --primary: #00aaff;
+  --secondary: #ff3399;
+  --accent: #ff8c00;
+  --background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(0, 0, 0, 0.1);
+}
 
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Poppins", sans-serif;
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background);
+  overflow-x: hidden;
+  position: relative;
+}
 
-  
+/* Particle & Neon Canvas */
+#particles, #neonLines {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  z-index: -1;
+}
+
+/* Fixed User Bar */
+.user-bar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 1200px;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-shadow:0 0 10px var(--primary);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  cursor: pointer;
+  background: rgba(0,0,0,0.05);
+  padding: 0.3rem 0.8rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+.user-profile:hover { background: rgba(0,0,0,0.1); }
+.user-profile img { width:45px; height:45px; border-radius:50%; border:2px solid var(--primary); }
+.user-profile span { font-weight:600; font-size:1rem; color:#222; }
+
+/* Dropdown */
+.user-dropdown {
+  position: absolute;
+  top:55px; right:0;
+  background: rgba(255,255,255,0.95);
+  border-radius:12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  display:none;
+  flex-direction: column;
+  min-width:160px;
+  overflow:hidden;
+}
+.user-profile:hover .user-dropdown { display:flex; }
+
+.user-dropdown a, .user-dropdown form button {
+  display:block;
+  padding:0.6rem 1rem;
+  color:#222;
+  text-decoration:none;
+  background:none;
+  border:none;
+  text-align:left;
+  cursor:pointer;
+  transition:0.2s;
+}
+.user-dropdown a:hover, .user-dropdown form button:hover { background:var(--secondary); color:#fff; }
+
+/* Card */
+.card {
+  background: var(--card-bg);
+  border:1px solid var(--card-border);
+  backdrop-filter: blur(15px);
+  border-radius:30px;
+  box-shadow: 0 15px 60px rgba(0,0,0,0.1);
+  max-width:700px;
+  width:90%;
+  padding:3rem;
+  text-align:center;
+  margin:6rem 0 3rem;
+  animation: floatCard 6s ease-in-out infinite, fadeIn 1s forwards;
+  position: relative;
+}
+.card::before {
+  content:'';
+  position:absolute;
+  top:-30px; left:-30px; right:-30px; bottom:-30px;
+  border-radius:40px;
+  background: radial-gradient(circle, rgba(0,170,255,0.15), transparent 70%);
+  z-index:-1;
+}
+.card:hover { transform: translateY(-6px) scale(1.02); box-shadow:0 20px 70px rgba(0,0,0,0.15); }
+
+@keyframes floatCard {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Card Text */
+h1 { font-size:2.8rem; margin-bottom:0.5rem; color: var(--secondary); text-shadow:0 0 8px #ff3399;}
+.verified { background:#28a745; color:white; padding:7px 16px; font-size:1rem; border-radius:50px; margin-bottom:1rem; }
+
+/* Gallery */
+.gallery { display:flex; justify-content:center; flex-wrap:wrap; gap:1.2rem; margin:1.5rem 0; }
+.gallery img {
+  width:120px;
+  border-radius:20px;
+  box-shadow:0 0 15px rgba(0,170,255,0.3);
+  transition: transform 0.4s, box-shadow 0.4s, filter 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.15) rotate(2deg);
+  box-shadow:0 0 35px rgba(0,170,255,0.6);
+  filter: brightness(1.2);
+}
+
+/* Price & Stock */
+.price {
+  font-size:3rem;
+  font-weight:bold;
+  background: linear-gradient(90deg, #00aaff, #ff3399, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top:1rem;
+  text-shadow:0 0 10px rgba(0,170,255,0.5);
+}
+.stock-warning { color:#ff8c00; margin:0.5rem 0 1rem; font-weight:600;}
+.description { font-size:1rem; margin-bottom:2rem; color:#333; }
+
+/* Buttons */
+.btn {
+  padding:1rem 2.5rem;
+  border-radius:50px;
+  font-weight:600;
+  font-size:1.05rem;
+  text-align:center;
+  cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.btn-login { border:2px solid var(--primary); background:transparent; color:var(--primary);}
+.btn-login:hover { background:var(--primary); color:#fff; transform:scale(1.05); box-shadow:0 0 20px var(--primary); }
+
+.btn-signup { border:2px solid var(--secondary); background:transparent; color:var(--secondary);}
+.btn-signup:hover { background:var(--secondary); color:#fff; transform:scale(1.05); box-shadow:0 0 20px var(--secondary); }
+
+.btn-buy {
+  background: linear-gradient(135deg, #ff3399, #ff8c00);
+  color:#fff; font-weight:bold; padding:1rem 2.5rem;
+  border-radius:50px; box-shadow:0 0 30px rgba(255,51,153,0.5);
+  margin-bottom:2rem;
+}
+.btn-buy:hover {
+  transform:scale(1.1);
+  box-shadow:0 0 40px rgba(255,51,153,0.7), 0 0 50px rgba(255,140,0,0.5);
+}
+
+/* Button Group */
+.btn-group { display:flex; justify-content:center; gap:1.5rem; margin-bottom:1.5rem; }
+
+/* Testimonials */
+.testimonials { font-size:1rem; margin-top:1rem; background: rgba(255,255,255,0.6); padding:1.5rem; border-radius:20px; box-shadow:0 0 20px rgba(0,170,255,0.2);}
+.testimonials .name { color:var(--primary); font-weight:bold; margin-top:0.5rem; }
+
+/* Footer */
+footer { margin-top:3rem; font-size:0.85rem; color:#555; text-align:center; }
+
+/* Animations */
+@keyframes fadeIn { to { opacity:1; } }
+
+/* Responsive */
+@media(max-width:768px){ 
+  .btn-group { flex-direction:column; gap:1rem; }
+  .card { padding:2rem; width:95%; margin-top:5rem;}
+  .gallery img { width:90px; }
+  h1 { font-size:2.4rem; }
+  .price { font-size:2.6rem; }
+}
+</style>
 </head>
-
 <body>
+<canvas id="neonLines"></canvas>
+<canvas id="particles"></canvas>
 
-  <div class="user-bar">
-    <div class="logo"><i class="fas fa-mobile-alt"></i> TechHub</div>
-
-    <div class="user-profile">
-      <img src="https://via.placeholder.com/38" alt="User" />
-      <span>{{ request.user.username }}</span>
-      <div class="user-dropdown">
-        <a href="{% url 'userdata' %}">Profile</a>
-        <form method="post" action="{% url 'logout' %}" enctype="multipart/form-data">
-          {% csrf_token %}
-          <button type="submit">Log Out</button>
-        </form>
-      </div>
+<div class="user-bar">
+  <div class="logo"><i class="fas fa-mobile-alt"></i> Shiv Aajad Sharma</div>
+  <div class="user-profile">
+    <img src="https://via.placeholder.com/45" alt="User">
+    <span>{{ request.user.username }}</span>
+    <div class="user-dropdown">
+      <a href="{% url 'userdata' %}"><i class="fas fa-user-circle"></i> Profile</a>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+      </form>
     </div>
   </div>
+</div>
 
-  <div class="card">
-    <h1>iPhone 16 - Just $100</h1>
-    <span class="verified"><i class="fas fa-check-circle"></i> Verified Deal</span>
+<div class="card">
+  <h1>iPhone 16 - Just $100</h1>
+  <span class="verified"><i class="fas fa-check-circle"></i> Verified Deal</span>
 
-    <div class="gallery">
-      <img src="https://via.placeholder.com/100" alt="Product 1" />
-      <img src="https://via.placeholder.com/100" alt="Product 2" />
-      <img src="https://via.placeholder.com/100" alt="Product 3" />
-    </div>
-
-    <div class="price">$100</div>
-    <div class="stock-warning">Only 5 left in stock!</div>
-    <p class="description">
-      Get your hands on the latest iPhone 16 for just $100! Limited-time verified offer. Don’t miss it!
-    </p>
-
-    <div class="btn-group">
-      <a href="{% url 'login' %}" class="btn-login">Login</a>
-      <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
-    </div>
-
-    <a href="#" class="btn-buy"><i class="fas fa-shopping-cart"></i> Buy Now</a>
-
-    <div class="testimonials">
-      <p>"Amazing deal! I got mine in 2 days!"</p>
-      <div class="name">— Jane Doe</div>
-    </div>
+  <div class="gallery">
+    <img src="https://via.placeholder.com/100" alt="Product 1">
+    <img src="https://via.placeholder.com/100" alt="Product 2">
+    <img src="https://via.placeholder.com/100" alt="Product 3">
   </div>
 
-  <footer>© 2025 TechHub Deals | Secure Checkout</footer>
+  <div class="price">$100</div>
+  <div class="stock-warning">Only 5 left in stock!</div>
+  <p class="description">Get your hands on the latest iPhone 16 for just $100! Limited-time verified offer. Don’t miss it!</p>
 
+  <div class="btn-group">
+    <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+    <a href="{% url 'signup' %}" class="btn btn-signup">Sign Up</a>
+  </div>
 
+  <a href="#" class="btn btn-buy"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+
+  <div class="testimonials">
+    <p>"Amazing deal! I got mine in 2 days!"</p>
+    <div class="name">— Jane Doe</div>
+  </div>
+</div>
+
+<footer>© 2025 TechHub Deals | Secure Checkout</footer>
+
+<script>
+// Particles
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w,h;
+function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight;}
+window.addEventListener('resize', resize);
+resize();
+
+const particles = [];
+for(let i=0;i<60;i++){
+  particles.push({x:Math.random()*w, y:Math.random()*h, r: Math.random()*2+1, dx:(Math.random()-0.5)*0.3, dy:(Math.random()-0.5)*0.3});
+}
+function animateParticles(){
+  ctx.clearRect(0,0,w,h);
+  for(let p of particles){
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0||p.x>w) p.dx*=-1;
+    if(p.y<0||p.y>h) p.dy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,170,255,0.5)';
+    ctx.fill();
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// Neon Diagonal Lines
+const lineCanvas = document.getElementById('neonLines');
+const lctx = lineCanvas.getContext('2d');
+function resizeLines(){ lineCanvas.width = window.innerWidth; lineCanvas.height = window.innerHeight; }
+window.addEventListener('resize', resizeLines);
+resizeLines();
+
+const lines = [];
+for(let i=0;i<15;i++){
+  lines.push({x:Math.random()*w, y:Math.random()*h, length:200+Math.random()*200, dx:0.2+Math.random()*0.3, color:`rgba(0,170,255,0.2)`});
+}
+function animateLines(){
+  lctx.clearRect(0,0,w,h);
+  for(let l of lines){
+    l.x += l.dx;
+    if(l.x> w+l.length) l.x = -l.length;
+    lctx.strokeStyle = l.color;
+    lctx.lineWidth=2;
+    lctx.beginPath();
+    lctx.moveTo(l.x,l.y);
+    lctx.lineTo(l.x+l.length,l.y+50);
+    lctx.stroke();
+  }
+  requestAnimationFrame(animateLines);
+}
+animateLines();
+</script>
 </body>
 </html>

@@ -1,26 +1,26 @@
 import os
 from pathlib import Path
 
+# -----------------------------
+# Basic paths & secret key
+# -----------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = '^rhmj$0u%!hsz)%thrwvfni#ied_8$#p+fg0weejwvj!f6o-ct'
-
 DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
-# 👇 Use HTTPS setting if testing via ngrok
+# -----------------------------
+# HTTPS / CSRF settings
+# -----------------------------
 USE_HTTPS = os.getenv('USE_HTTPS', 'False') == 'True'
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "http://127.0.0.1",
-    "http://192.168.0.100",  # your local IP if testing on phone
-    "https://6eab714d5021.ngrok-free.app",  # The ngrok URL you're using
-    # Add any new ngrok URLs if they change
+    "http://192.168.0.100",  # local IP
+    "https://6eab714d5021.ngrok-free.app",  # ngrok URL
 ]
-
-
 
 if USE_HTTPS:
     CSRF_COOKIE_SECURE = True
@@ -33,16 +33,25 @@ else:
     CSRF_COOKIE_SAMESITE = "Lax"
     SESSION_COOKIE_SAMESITE = "Lax"
 
+# -----------------------------
+# Installed apps
+# -----------------------------
 INSTALLED_APPS = [
+    'dada.apps.DadaConfig',  # keep only this
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dada',  # your app
+    'widget_tweaks',
+
 ]
 
+
+# -----------------------------
+# Middleware
+# -----------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,12 +62,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# -----------------------------
+# URLs & templates
+# -----------------------------
 ROOT_URLCONF = 'bohemia.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'template'],
+        'DIRS': [BASE_DIR / 'template'],  # template folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +84,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bohemia.wsgi.application'
 
+# -----------------------------
+# Database
+# -----------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -79,18 +94,17 @@ DATABASES = {
     }
 }
 
-# Static files (CSS, JavaScript, Images)
+# -----------------------------
+# Static files
+# -----------------------------
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # dev
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # production
 
-# Directories where static files will be found
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Your local static files directory for development
-
-# Directory where static files will be collected when running `collectstatic`
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # The directory where static files are collected for production
-
-
+# -----------------------------
+# Authentication
+# -----------------------------
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
-
-AUTH_USER_MODEL = 'dada.CustomUser'
+AUTH_USER_MODEL = 'dada.CustomUser'  # ✅ use your custom user model
